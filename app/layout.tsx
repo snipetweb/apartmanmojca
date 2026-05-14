@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Apartman Puntice",
+  title: "Villa Lina Sea Breeze",
   description: "Moderan apartman s grijanim bazenom, dvije spavaće sobe, grillom, klimom i dodatnim ležajem za još dvije osobe.",
 };
 
