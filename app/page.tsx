@@ -419,12 +419,12 @@ export default function ApartmanPage() {
             </a>
           </nav>
 
-          <div className="hidden items-center rounded-2xl border border-slate-200 bg-white p-1 shadow-sm md:flex">
+          <div className="flex shrink-0 items-center rounded-2xl border border-slate-200 bg-white p-1 shadow-sm">
             {(["hr", "en", "de"] as Lang[]).map((item) => (
               <button
                 key={item}
                 onClick={() => setLang(item)}
-                className={`rounded-xl px-3 py-2 text-xs font-semibold transition ${
+                className={`rounded-xl px-2 py-1.5 text-[11px] font-semibold transition md:px-3 md:py-2 md:text-xs ${
                   lang === item
                     ? "bg-slate-900 text-white"
                     : "text-slate-600 hover:text-slate-900"
