@@ -78,7 +78,7 @@ const text = {
     ctaPrimary: "Pogledaj dostupnost",
     ctaSecondary: "Kontaktiraj domaćina",
     address: "Put za Puntice 9A, Ližnjan",
-    stats: ["6 osoba", "107 m²", "2 spavaće sobe", "3 kupaonice", "Od 200 € / noć"],
+    stats: ["6 osoba", "107 m²", "2 spavaće sobe", "3 kupaonice"],
     galleryBadge: "Galerija",
     galleryTitle: "Villa Lina Sea Breeze kroz fotografije.",
     aboutBadge: "O vili",
