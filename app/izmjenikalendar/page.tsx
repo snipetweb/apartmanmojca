@@ -177,7 +177,7 @@ export default function IzmjeniKalendarPage() {
             </div>
             <div>
               <div className="text-lg font-semibold text-slate-900">
-                Apartman Puntice
+                Villa Lina Sea Breeze
               </div>
               <div className="text-xs text-slate-500">
                 Put za Puntice 9A, Ližnjan
