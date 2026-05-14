@@ -35,6 +35,7 @@ type CalendarDate = {
 const PHONE_DISPLAY = "+386 31 555 512";
 const PHONE_TEL = "+38631555512";
 const WHATSAPP_URL = "https://wa.me/38631555512";
+const MAIL = "mojca.peterka@gmail.com";
 
 const APARTMENT_IMAGES = [
   "/apartman/slika3.jpg",
@@ -675,121 +676,90 @@ export default function ApartmanPage() {
       </section>
 
       <section className="bg-white py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="overflow-hidden rounded-[36px] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
-            <div className="flex items-center justify-between border-b border-slate-200 p-6">
-              <div>
-                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-600">
-                  {t.carouselBadge}
-                </div>
-
-                <h2 className="mt-2 text-3xl font-bold text-slate-900">
-                  {t.carouselTitle}
-                </h2>
-              </div>
-
-              <div className="flex gap-3">
-                <button
-                  onClick={prevSlide}
-                  className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-
-                <button
-                  onClick={nextSlide}
-                  className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </div>
-            </div>
-
-            <div className="relative">
-              <img
-                src={CAROUSEL_IMAGES[carouselIndex]}
-                alt="Galerija vile"
-                className="h-[650px] w-full object-cover transition-all duration-500"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-
-              <div className="absolute bottom-6 left-6 flex gap-2">
-                {CAROUSEL_IMAGES.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCarouselIndex(index)}
-                    className={`h-2.5 rounded-full transition-all ${
-                      carouselIndex === index
-                        ? "w-10 bg-white"
-                        : "w-2.5 bg-white/50 hover:bg-white/80"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="grid gap-4 p-6 md:grid-cols-7">
-              {CAROUSEL_IMAGES.map((image, index) => (
-                <button
-                  key={image}
-                  onClick={() => setCarouselIndex(index)}
-                  className={`hidden overflow-hidden rounded-[22px] border-2 transition-all md:grid ${
-                    carouselIndex === index
-                      ? "border-emerald-500"
-                      : "border-transparent hover:border-slate-200"
-                  }`}
-                >
-                  <img
-                    src={image}
-                    alt={`Thumbnail ${index + 1}`}
-                    className="hidden h-24 w-full object-cover md:grid"
-                  />
-                </button>
-              ))}
-            </div>
+  <div className="mx-auto max-w-7xl px-6">
+    <div className="overflow-hidden rounded-[36px] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+      <div className="flex items-center justify-between border-b border-slate-200 p-6">
+        <div>
+          <div className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-600">
+            {t.carouselBadge}
           </div>
+
+          <h2 className="mt-2 text-3xl font-bold text-slate-900">
+            {t.carouselTitle}
+          </h2>
         </div>
-      </section>
 
-      <section className="bg-[#f8fbfd] py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="max-w-2xl">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">
-              {t.reviewsBadge}
-            </div>
+        <div className="flex gap-3">
+          <button
+            onClick={prevSlide}
+            className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100"
+          >
+            <ChevronLeft size={20} />
+          </button>
 
-            <h2 className="mt-4 text-3xl font-bold text-slate-900 md:text-5xl">
-              {t.reviewsTitle}
-            </h2>
-          </div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {t.reviews.map((item) => (
-              <div
-                key={item.name}
-                className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm"
-              >
-                <div className="flex items-center gap-1 text-emerald-600">
-                  <Star size={16} fill="currentColor" />
-                  <Star size={16} fill="currentColor" />
-                  <Star size={16} fill="currentColor" />
-                  <Star size={16} fill="currentColor" />
-                  <Star size={16} fill="currentColor" />
-                </div>
-
-                <p className="mt-4 text-sm leading-7 text-slate-600">
-                  “{item.text}”
-                </p>
-
-                <div className="mt-5 font-semibold text-slate-900">
-                  {item.name}
-                </div>
-              </div>
-            ))}
-          </div>
+          <button
+            onClick={nextSlide}
+            className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100"
+          >
+            <ChevronRight size={20} />
+          </button>
         </div>
-      </section>
+      </div>
+
+      <div className="relative">
+        <img
+          src={CAROUSEL_IMAGES[carouselIndex]}
+          alt="Galerija vile"
+          className="h-[650px] w-full object-cover transition-all duration-500"
+        />
+
+        <button
+          onClick={prevSlide}
+          aria-label="Prethodna fotografija"
+          className="absolute left-0 top-0 h-full w-1/2 cursor-w-resize"
+        />
+
+        <button
+          onClick={nextSlide}
+          aria-label="Sljedeća fotografija"
+          className="absolute right-0 top-0 h-full w-1/2 cursor-e-resize"
+        />
+
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+
+        <div className="absolute bottom-6 left-6 flex gap-2">
+          {CAROUSEL_IMAGES.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCarouselIndex(index)}
+              className={`h-2.5 rounded-full transition-all ${
+                carouselIndex === index
+                  ? "w-10 bg-white"
+                  : "w-2.5 bg-white/50 hover:bg-white/80"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={prevSlide}
+          aria-label="Prethodna fotografija"
+          className="absolute left-5 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-lg transition hover:bg-white"
+        >
+          <ChevronLeft size={22} />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          aria-label="Sljedeća fotografija"
+          className="absolute right-5 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-lg transition hover:bg-white"
+        >
+          <ChevronRight size={22} />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
       <section id="location" className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-6">
@@ -881,6 +851,12 @@ export default function ApartmanPage() {
                 className="mt-3 flex w-full items-center justify-center rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm font-bold text-white transition hover:bg-white/15"
               >
                 {t.call}
+              </a>
+              <a
+                href={`mailto:${MAIL}`}
+                className="mt-3 flex w-full items-center justify-center rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm font-bold text-white transition hover:bg-white/15"
+              >
+                MAIL
               </a>
             </div>
           </div>
