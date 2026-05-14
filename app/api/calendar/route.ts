@@ -13,10 +13,11 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const body = await request.json();
+  const { availableDates, password } = body;
 
-  if (body.password !== process.env.CALENDAR_ADMIN_PASSWORD) {
+  if (password !== process.env.CALENDAR_PASSWORD) {
     return NextResponse.json(
-      { success: false, message: "Neispravna šifra." },
+      { error: "Unauthorized" },
       { status: 401 }
     );
   }
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
     filePath,
     JSON.stringify(
       {
-        availableDates: body.availableDates ?? [],
+        availableDates: availableDates ?? [],
       },
       null,
       2

@@ -36,6 +36,7 @@ export default function IzmjeniKalendarPage() {
   const [availableDates, setAvailableDates] = useState<CalendarDate[]>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [priceInput, setPriceInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [savedMessage, setSavedMessage] = useState("");
 
@@ -50,7 +51,6 @@ export default function IzmjeniKalendarPage() {
       });
 
       const data = await response.json();
-
       setAvailableDates(data.availableDates ?? []);
     }
 
@@ -117,19 +117,34 @@ export default function IzmjeniKalendarPage() {
   }
 
   async function saveCalendar() {
+    if (!passwordInput) {
+      alert("Unesi šifru.");
+      return;
+    }
+
     setIsSaving(true);
     setSavedMessage("");
 
-    await fetch("/api/calendar", {
+    const response = await fetch("/api/calendar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ availableDates }),
+      body: JSON.stringify({
+        availableDates,
+        password: passwordInput,
+      }),
     });
 
     setIsSaving(false);
+
+    if (!response.ok) {
+      alert("Pogrešna šifra.");
+      return;
+    }
+
     setSavedMessage("Kalendar je spremljen.");
+    setPasswordInput("");
   }
 
   function nextMonth() {
@@ -236,7 +251,6 @@ export default function IzmjeniKalendarPage() {
                 </div>
               </div>
             </div>
-
           </div>
 
           <div className="overflow-hidden rounded-[34px] border border-slate-200 bg-white shadow-[0_30px_100px_rgba(15,23,42,0.10)]">
@@ -318,22 +332,6 @@ export default function IzmjeniKalendarPage() {
                 })}
               </div>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-500 text-white">
-                    <Check size={16} />
-                  </div>
-                  Dostupan datum
-                </div>
-
-                <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-slate-200 text-slate-500">
-                    <X size={16} />
-                  </div>
-                  Nedostupan datum
-                </div>
-              </div>
-
               <div className="mt-6 rounded-[24px] border border-slate-200 bg-slate-50 p-5">
                 <div className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-600">
                   Cijena termina
@@ -376,6 +374,20 @@ export default function IzmjeniKalendarPage() {
                     dodaje novi termin s početnom cijenom od 100€.
                   </p>
                 )}
+              </div>
+
+              <div className="mt-6 rounded-[24px] border border-slate-200 bg-slate-50 p-5">
+                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-600">
+                  Šifra za spremanje
+                </div>
+
+                <input
+                  type="password"
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  className="mt-4 h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none focus:border-emerald-400"
+                  placeholder="Unesi šifru"
+                />
               </div>
 
               {savedMessage && (
